@@ -1,17 +1,27 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
 
-void print_introduction()
+static void interrupt(int signal)
 {
-    puts("");
-    fprintf(stdout, "The mechanism is simple:\n" \
-                    "\tProviding a number adds it to the entire sum\n" \
-                    "\tProviding anything else ends the calculation.\n");
-    puts("");
+    fputs("\nSignal interrupted. Stopping the program...\n", stderr);
+    exit(signal);
+}
+
+static void print_introduction()
+{
+    fputs("\n", stdout);
+    fputs("The mechanism is simple:\n" \
+                    "\tProviding a price adds it to the entire sum\n" \
+                    "\tProviding anything else (excluding whitespaces) ends the calculation.\n", stdout);
+    fputs("\n", stdout);
 }
 
 int main()
 {
-    puts("Hello, Cash Register!");
+    signal(SIGINT, interrupt);
+
+    fputs("Hello, Cash Register!\n", stdout);
 
     print_introduction();
     
@@ -26,6 +36,11 @@ int main()
         num_param = fscanf(stdin, "%f", &temp);
         if (num_param != 1)
             break;
+        if (temp < 0)
+        {
+            fprintf(stderr, "Please provide a valid price\n");
+            continue;
+        }
         sum += temp;
     }
 
