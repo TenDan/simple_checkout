@@ -12,4 +12,4 @@ $(BIN): cash_register.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
-	rm $(OBJS) -r $(BIN) *.dSYM
+	rm -r $(BIN) *.dSYM
