@@ -4,9 +4,11 @@ int main()
 {
     puts("Hello, Cash Register!");
 
+    puts("");
     fprintf(stdout, "The mechanism is simple:\n" \
                     "\tProviding a number adds it to the entire sum\n" \
                     "\tProviding anything else ends the calculation.\n");
+    puts("");
     
     float temp = -1;
     float sum = 0;
