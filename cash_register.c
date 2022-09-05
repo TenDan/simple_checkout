@@ -44,5 +44,5 @@ int main()
         sum += temp;
     }
 
-    fprintf(stdout, "Final sum: %.2f\n", sum);
+    fprintf(stdout, "\nFinal sum: %.2f\n", sum);
 }
